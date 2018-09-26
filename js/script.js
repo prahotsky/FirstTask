@@ -4,9 +4,10 @@ var totalResults;
 
 showFilms(bestFilms);
 
-function makeRequest() {
+async function makeRequest() {
+    searchResult.removeEventListener("scroll", listenScroll);
     var searchValue = document.getElementById("searchInput").value;
-    fetch("http://www.omdbapi.com/?apikey=1f944386&s=" + searchValue + "&page=" + (filmsArr.length + 1))
+    await fetch("http://www.omdbapi.com/?apikey=1f944386&s=" + searchValue + "&page=" + (filmsArr.length + 1))
         .then(
             function (response) {
                 if (response.status !== 200) {
